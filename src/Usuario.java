@@ -38,4 +38,16 @@ public class Usuario {
     public void setIdade(int idade) {
         this.idade = idade;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return idade == usuario.idade && Objects.equals(nome, usuario.nome) && Objects.equals(cpf, usuario.cpf);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, cpf, idade);
+    }
 }

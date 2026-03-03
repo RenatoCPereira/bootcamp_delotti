@@ -6,6 +6,8 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner teclado = new Scanner(System.in);
+        Usuario usuario = new Usuario();
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
         int opcao;
 
         do {
@@ -15,14 +17,23 @@ public class Main {
             System.out.println("3 - Atualizar usuario");
             System.out.println("4 - Deletar usuario");
             System.out.println("0 - Sair");
-            System.out.print("Escolha uma opção:");
+            System.out.print(" Escolha uma opção: ");
             opcao = teclado.nextInt();
+            teclado.nextLine();
 
             switch (opcao) {
                 case 1:
 
-                    System.out.println("1");
+                    System.out.println("Informe seu nome:");
+                    usuario.setNome(teclado.nextLine());
+                    System.out.println("Informe seu cpf:");
+                    usuario.setCpf(teclado.nextLine());
+                    System.out.println("Informe sua idade:");
+                    usuario.setIdade(teclado.nextInt());
+                    listaUsuarios.add(usuario);
+                    System.out.println("Cadastro realizado com sucesso!");
                     break;
+
                 case 2:
                     System.out.println("2");
                     break;
@@ -39,40 +50,9 @@ public class Main {
                     System.out.println("Opção inválida!");
             }
 
-        } while (opcao != 0); // Repete enquanto não escolher 0
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        } while (opcao != 0);
 
         teclado.close();
-
-
-
 
 
     }
