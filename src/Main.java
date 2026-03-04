@@ -38,10 +38,7 @@ public class Main {
                         System.out.println("Nenhum usuário cadastrado!.");
                     } else {
                         for (Usuario us : listaUsuarios) {
-                            System.out.println("Nome: " + us.getNome());
-                            System.out.println("CPF: " + us.getCpf());
-                            System.out.println("Idade: " + us.getIdade());
-                            System.out.println("-----------------------");
+                            System.out.println(us);
                         }
                     }
 
