@@ -6,7 +6,6 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner teclado = new Scanner(System.in);
-        Usuario usuario = new Usuario();
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
         int opcao;
 
@@ -23,7 +22,7 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-
+                    Usuario usuario = new Usuario();
                     System.out.println("Informe seu nome:");
                     usuario.setNome(teclado.nextLine());
                     System.out.println("Informe seu cpf:");
@@ -35,7 +34,17 @@ public class Main {
                     break;
 
                 case 2:
-                    System.out.println("2");
+                    if (listaUsuarios.isEmpty()) {
+                        System.out.println("Nenhum usuário cadastrado!.");
+                    } else {
+                        for (Usuario us : listaUsuarios) {
+                            System.out.println("Nome: " + us.getNome());
+                            System.out.println("CPF: " + us.getCpf());
+                            System.out.println("Idade: " + us.getIdade());
+                            System.out.println("-----------------------");
+                        }
+                    }
+
                     break;
                 case 3:
                     System.out.println("3");
