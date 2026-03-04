@@ -74,8 +74,26 @@ public class Main {
                     break;
 
                 case 4:
-                    System.out.println("4");
+                    System.out.println("Informe o CPF do usuario que deseja deletar:");
+                    String cpfRemover = teclado.nextLine();
+                    boolean removido = false;
+
+                    for (Usuario us : listaUsuarios) {
+
+                        if (us.getCpf().equals(cpfRemover)) {
+                            listaUsuarios.remove(us);
+                            System.out.println("Usuario removido com sucesso!");
+                            removido = true;
+                            break;
+                        }
+                    }
+
+                    if (!removido) {
+                        System.out.println("Usuario não encontrado!");
+                    }
+
                     break;
+
                 case 0:
                     System.out.println("Saindo...");
                     break;
