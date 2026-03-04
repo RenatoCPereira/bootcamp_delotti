@@ -29,26 +29,50 @@ public class Main {
                     usuario.setCpf(teclado.nextLine());
                     System.out.println("Informe sua idade:");
                     usuario.setIdade(teclado.nextInt());
+                    teclado.nextLine();
                     listaUsuarios.add(usuario);
                     System.out.println("Cadastro realizado com sucesso!");
                     break;
 
                 case 2:
                     if (listaUsuarios.isEmpty()) {
-                        System.out.println("Nenhum usuário cadastrado!.");
+                        System.out.println("Nenhum usuario cadastrado!.");
                     } else {
                         for (Usuario us : listaUsuarios) {
-                            System.out.println("Nome: " + us.getNome());
-                            System.out.println("CPF: " + us.getCpf());
-                            System.out.println("Idade: " + us.getIdade());
-                            System.out.println("-----------------------");
+                            System.out.println(us);
                         }
                     }
 
                     break;
                 case 3:
-                    System.out.println("3");
+                    System.out.println("Informe o CPF do usuario que deseja atualizar:");
+                    String cpfBusca = teclado.nextLine();
+                    boolean encontrado = false;
+
+                    for (Usuario us : listaUsuarios) {
+                        if (us.getCpf().equals(cpfBusca)) {
+
+                            System.out.println("Usuario encontrado!");
+
+                            System.out.println("Novo nome:");
+                            us.setNome(teclado.nextLine());
+
+                            System.out.println("Nova idade:");
+                            us.setIdade(teclado.nextInt());
+                            teclado.nextLine(); // limpar buffer
+
+                            System.out.println("Usuario atualizado com sucesso!");
+                            encontrado = true;
+                            break;
+                        }
+                    }
+
+                    if (!encontrado) {
+                        System.out.println("Usuario não encontrado!");
+                    }
+
                     break;
+
                 case 4:
                     System.out.println("4");
                     break;
