@@ -2,17 +2,21 @@ import java.util.Objects;
 
 public class Usuario {
 
-    private String nome;
-    private String cpf;
-    private int idade;
+    public String nome;
+    public String cpf;
+    public int idade;
+    public String senha;
+    public String email;
 
     public Usuario() {
     }
 
-    public Usuario(String nome, String cpf, int idade) {
+    public Usuario(String nome, String cpf, int idade, String senha, String email) {
         this.nome = nome;
         this.cpf = cpf;
         this.idade = idade;
+        this.senha = senha;
+        this.email = email;
     }
 
     public String getNome() {
@@ -39,23 +43,41 @@ public class Usuario {
         this.idade = idade;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return idade == usuario.idade && Objects.equals(nome, usuario.nome) && Objects.equals(cpf, usuario.cpf);
+        return idade == usuario.idade && Objects.equals(nome, usuario.nome) && Objects.equals(cpf, usuario.cpf) && Objects.equals(senha, usuario.senha) && Objects.equals(email, usuario.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, cpf, idade);
+        return Objects.hash(nome, cpf, idade, senha, email);
     }
 
     @Override
     public String toString() {
-        return  "\n nome = " + nome +
+        return "\n nome = " + nome +
                 "\n cpf = " + cpf +
                 "\n idade = " + idade +
+                "\n senha = " + senha +
+                "\n email = " + email +
                 "\n-----------------------";
     }
 }
