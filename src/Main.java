@@ -11,10 +11,10 @@ public class Main {
 
         do {
             System.out.println("\n=== Menu ===");
-            System.out.println("1 - Inserir usuario");
-            System.out.println("2 - Listar usuario");
-            System.out.println("3 - Atualizar usuario");
-            System.out.println("4 - Deletar usuario");
+            System.out.println("1 - Inserir usuário");
+            System.out.println("2 - Listar usuário");
+            System.out.println("3 - Atualizar usuário");
+            System.out.println("4 - Deletar usuário");
             System.out.println("0 - Sair");
             System.out.print(" Escolha uma opção: ");
             opcao = teclado.nextInt();
@@ -22,76 +22,16 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    Usuario usuario = new Usuario();
-                    System.out.println("Informe seu nome:");
-                    usuario.setNome(teclado.nextLine());
-                    System.out.println("Informe seu cpf:");
-                    usuario.setCpf(teclado.nextLine());
-                    System.out.println("Informe sua idade:");
-                    usuario.setIdade(teclado.nextInt());
-                    teclado.nextLine();
-                    listaUsuarios.add(usuario);
-                    System.out.println("Cadastro realizado com sucesso!");
+                    Usuario.cadastrar(listaUsuarios, teclado);
                     break;
-
                 case 2:
-                    if (listaUsuarios.isEmpty()) {
-                        System.out.println("Nenhum usuario cadastrado!.");
-                    } else {
-                        for (Usuario us : listaUsuarios) {
-                            System.out.println(us);
-                        }
-                    }
-
+                    Usuario.listar(listaUsuarios);
                     break;
                 case 3:
-                    System.out.println("Informe o CPF do usuario que deseja atualizar:");
-                    String cpfBusca = teclado.nextLine();
-                    boolean encontrado = false;
-
-                    for (Usuario us : listaUsuarios) {
-                        if (us.getCpf().equals(cpfBusca)) {
-
-                            System.out.println("Usuario encontrado!");
-
-                            System.out.println("Novo nome:");
-                            us.setNome(teclado.nextLine());
-
-                            System.out.println("Nova idade:");
-                            us.setIdade(teclado.nextInt());
-                            teclado.nextLine(); // limpar buffer
-
-                            System.out.println("Usuario atualizado com sucesso!");
-                            encontrado = true;
-                            break;
-                        }
-                    }
-
-                    if (!encontrado) {
-                        System.out.println("Usuario não encontrado!");
-                    }
-
+                    Usuario.atualizar(listaUsuarios, teclado);
                     break;
-
                 case 4:
-                    System.out.println("Informe o CPF do usuario que deseja deletar:");
-                    String cpfRemover = teclado.nextLine();
-                    boolean removido = false;
-
-                    for (Usuario us : listaUsuarios) {
-
-                        if (us.getCpf().equals(cpfRemover)) {
-                            listaUsuarios.remove(us);
-                            System.out.println("Usuario removido com sucesso!");
-                            removido = true;
-                            break;
-                        }
-                    }
-
-                    if (!removido) {
-                        System.out.println("Usuario não encontrado!");
-                    }
-
+                    Usuario.remover(listaUsuarios, teclado);
                     break;
 
                 case 0:

@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Usuario {
 
@@ -7,6 +9,7 @@ public class Usuario {
     public int idade;
     public String senha;
     public String email;
+
 
     public Usuario() {
     }
@@ -63,21 +66,122 @@ public class Usuario {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return idade == usuario.idade && Objects.equals(nome, usuario.nome) && Objects.equals(cpf, usuario.cpf) && Objects.equals(senha, usuario.senha) && Objects.equals(email, usuario.email);
+        return Objects.equals(cpf, usuario.cpf);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, cpf, idade, senha, email);
+        return Objects.hashCode(cpf);
     }
 
     @Override
     public String toString() {
-        return "\n nome = " + nome +
-                "\n cpf = " + cpf +
-                "\n idade = " + idade +
-                "\n senha = " + senha +
-                "\n email = " + email +
+        return "\n Nome = " + nome +
+                "\n Cpf = " + cpf +
+                "\n Idade = " + idade +
+                "\n Email = " + email +
+                "\n Senha = " + senha +
                 "\n-----------------------";
+    }
+
+
+    public static void cadastrar(ArrayList<Usuario> listaUsuarios, Scanner teclado) {
+
+        Usuario usuario = new Usuario();
+
+        System.out.println("Informe o nome:");
+        usuario.setNome(teclado.nextLine());
+
+        System.out.println("Informe o CPF:");
+        String cpf = teclado.nextLine();
+
+        for (Usuario u : listaUsuarios) {
+            if (u.getCpf().equals(cpf)) {
+                System.out.println("CPF já cadastrado!");
+                return;
+            }
+        }
+
+        usuario.setCpf(cpf);
+
+        System.out.println("Informe a idade:");
+        usuario.setIdade(teclado.nextInt());
+        teclado.nextLine();
+
+        System.out.println("Informe o email:");
+        usuario.setEmail(teclado.nextLine());
+
+        System.out.println("Informe a senha:");
+        usuario.setSenha(teclado.nextLine());
+
+        listaUsuarios.add(usuario);
+
+        System.out.println("Usuário cadastrado com sucesso!");
+    }
+
+    public static void listar(ArrayList<Usuario> listaUsuarios) {
+
+        if (listaUsuarios.isEmpty()) {
+            System.out.println("Nenhum usuário cadastrado.");
+            return;
+        }
+
+        for (Usuario us : listaUsuarios) {
+            System.out.println(us);
+        }
+    }
+
+    public static void atualizar(ArrayList<Usuario> listaUsuarios, Scanner teclado) {
+
+        System.out.println("Informe o CPF do usuário que deseja atualizar:");
+        String cpf = teclado.nextLine();
+
+        boolean encontrado = false;
+
+        for (Usuario usuario : listaUsuarios) {
+
+            if (usuario.getCpf().equals(cpf)) {
+
+                System.out.println("Usuário encontrado!");
+
+                System.out.println("Novo nome:");
+                usuario.setNome(teclado.nextLine());
+
+                System.out.println("Nova idade:");
+                usuario.setIdade(teclado.nextInt());
+                teclado.nextLine();
+
+                System.out.println("Novo email:");
+                usuario.setEmail(teclado.nextLine());
+
+                System.out.println("Nova senha:");
+                usuario.setSenha(teclado.nextLine());
+
+                System.out.println("Usuário atualizado com sucesso!");
+
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("Usuário não encontrado!");
+        }
+    }
+
+
+    public static void remover(ArrayList<Usuario> listaUsuarios, Scanner teclado) {
+
+        System.out.println("Informe o CPF do usuário:");
+        String cpf = teclado.nextLine();
+
+        Usuario usuario = new Usuario();
+        usuario.setCpf(cpf);
+
+        if (listaUsuarios.remove(usuario)) {
+            System.out.println("Usuário removido com sucesso!");
+        } else {
+            System.out.println("Usuário não encontrado.");
+        }
     }
 }
