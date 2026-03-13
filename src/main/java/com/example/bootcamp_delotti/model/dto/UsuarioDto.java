@@ -1,4 +1,4 @@
-package com.example.bootcamp_delotti.dto;
+package com.example.bootcamp_delotti.model.dto;
 
 import jakarta.validation.constraints.*;
 import lombok.*;

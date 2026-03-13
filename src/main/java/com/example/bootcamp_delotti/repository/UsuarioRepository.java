@@ -1,6 +1,6 @@
 package com.example.bootcamp_delotti.repository;
 
-import com.example.bootcamp_delotti.entity.Usuario;
+import com.example.bootcamp_delotti.model.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

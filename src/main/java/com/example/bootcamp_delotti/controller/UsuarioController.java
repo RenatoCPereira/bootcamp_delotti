@@ -1,7 +1,12 @@
 package com.example.bootcamp_delotti.controller;
 
-import com.example.bootcamp_delotti.dto.UsuarioDto;
+import com.example.bootcamp_delotti.model.dto.UsuarioDto;
 import com.example.bootcamp_delotti.service.UsuarioService;
+import com.example.bootcamp_delotti.validation.CpfValidation;
+import com.example.bootcamp_delotti.validation.EmailValidation;
+import com.example.bootcamp_delotti.validation.IdadeValidation;
+import com.example.bootcamp_delotti.validation.SenhaValidation;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,13 +35,21 @@ public class UsuarioController {
 
     // CRIAR USUARIO
     @PostMapping
-    public UsuarioDto salvar(@RequestBody UsuarioDto dto) {
+    public UsuarioDto salvar(@Valid @RequestBody UsuarioDto dto) {
+        CpfValidation.validar(dto.getCpf());
+        EmailValidation.validar(dto.getEmail());
+        SenhaValidation.validar(dto.getSenha());
+        IdadeValidation.validar(dto.getDataNascimento());
         return service.salvar(dto);
     }
 
     // ATUALIZAR USUARIO
     @PutMapping("/{id}")
-    public UsuarioDto atualizar(@PathVariable Long id, @RequestBody UsuarioDto dto) {
+    public UsuarioDto atualizar(@PathVariable Long id, @Valid @RequestBody UsuarioDto dto) {
+        CpfValidation.validar(dto.getCpf());
+        EmailValidation.validar(dto.getEmail());
+        SenhaValidation.validar(dto.getSenha());
+        IdadeValidation.validar(dto.getDataNascimento());
         return service.atualizar(id, dto);
     }
 
