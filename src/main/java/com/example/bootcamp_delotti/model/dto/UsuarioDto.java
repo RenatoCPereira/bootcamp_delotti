@@ -1,4 +1,4 @@
-package com.example.bootcamp_delotti.dto;
+package com.example.bootcamp_delotti.model.dto;
 
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -12,6 +12,8 @@ import java.time.LocalDate;
 @Builder
 @ToString
 public class UsuarioDto {
+
+    private Long id;
 
     @NotBlank(message = "Nome é obrigatório")
     @Size(min = 3, max = 100)
