@@ -8,7 +8,6 @@ public class UsuarioMapper {
     public static Usuario toEntity(UsuarioDto dto) {
 
         Usuario usuario = new Usuario();
-        usuario.setId(dto.getId());
         usuario.setNome(dto.getNome());
         usuario.setCpf(dto.getCpf());
         usuario.setSenha(dto.getSenha());
@@ -21,7 +20,6 @@ public class UsuarioMapper {
     public static UsuarioDto toDto(Usuario usuario) {
 
         UsuarioDto dto = new UsuarioDto();
-        dto.setId(usuario.getId());
         dto.setNome(usuario.getNome());
         dto.setCpf(usuario.getCpf());
         dto.setSenha(usuario.getSenha());
