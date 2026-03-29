@@ -18,14 +18,13 @@ public class UsuarioMapper {
     }
 
     public static UsuarioDto toDto(Usuario usuario) {
-
-        UsuarioDto dto = new UsuarioDto();
-        dto.setNome(usuario.getNome());
-        dto.setCpf(usuario.getCpf());
-        dto.setSenha(usuario.getSenha());
-        dto.setEmail(usuario.getEmail());
-        dto.setDataNascimento(usuario.getDataNascimento());
-
-        return dto;
+        return UsuarioDto.builder()
+                .id(usuario.getId())
+                .nome(usuario.getNome())
+                .cpf(usuario.getCpf())
+                .senha(usuario.getSenha())
+                .email(usuario.getEmail())
+                .dataNascimento(usuario.getDataNascimento())
+                .build();
     }
 }

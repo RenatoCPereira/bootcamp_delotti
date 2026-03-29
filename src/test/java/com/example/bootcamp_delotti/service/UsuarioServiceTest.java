@@ -1,7 +1,7 @@
 package com.example.bootcamp_delotti.service;
 
-import com.example.bootcamp_delotti.dto.UsuarioDto;
-import com.example.bootcamp_delotti.entity.Usuario;
+import com.example.bootcamp_delotti.model.dto.UsuarioDto;
+import com.example.bootcamp_delotti.model.entity.Usuario;
 import com.example.bootcamp_delotti.repository.UsuarioRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

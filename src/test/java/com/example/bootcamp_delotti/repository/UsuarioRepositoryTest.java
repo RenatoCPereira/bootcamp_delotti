@@ -1,6 +1,6 @@
 package com.example.bootcamp_delotti.repository;
 
-import com.example.bootcamp_delotti.entity.Usuario;
+import com.example.bootcamp_delotti.model.entity.Usuario;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -40,6 +40,7 @@ class UsuarioRepositoryTest {
         usuario.setCpf("12345678900");
         usuario.setEmail("renato@email.com");
         usuario.setSenha("123456");
+        usuario.setDataNascimento(LocalDate.of(1990,1,1)); // 👈 CORREÇÃO
 
         repository.save(usuario);
 

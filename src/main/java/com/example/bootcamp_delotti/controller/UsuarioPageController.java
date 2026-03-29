@@ -20,25 +20,21 @@ public class UsuarioPageController {
         this.service = service;
     }
 
-    // LISTAR USUÁRIOS
+
     @GetMapping("/listar")
     public String listar(Model model) {
-
         model.addAttribute("usuarios", service.listar());
-
         return "listar";
     }
 
-    // ABRIR TELA DE CADASTRO
+
     @GetMapping("/cadastro")
     public String cadastro(Model model) {
-
         model.addAttribute("usuario", new UsuarioDto());
-
         return "cadastro";
     }
 
-    // SALVAR USUÁRIO
+
     @PostMapping("/salvar")
     public String salvar(@Valid @ModelAttribute("usuario") UsuarioDto usuario,
                          BindingResult result,
@@ -46,56 +42,39 @@ public class UsuarioPageController {
                          RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
-
-            model.addAttribute("usuario", usuario); // 👈 GARANTE QUE VOLTA COM DADOS
-
             return "cadastro";
         }
 
         service.salvar(usuario);
-
         redirectAttributes.addFlashAttribute("sucesso", "Usuário cadastrado com sucesso!");
-
         return "redirect:/usuarios/listar";
     }
 
-    // ABRIR TELA DE EDIÇÃO
+
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable Long id, Model model) {
-
-        UsuarioDto usuario = service.buscar(id);
-
-        model.addAttribute("usuario", usuario);
-
+        model.addAttribute("usuario", service.buscar(id));
         return "cadastro";
     }
 
-    // ATUALIZAR USUÁRIO
+
     @PostMapping("/atualizar/{id}")
     public String atualizar(@PathVariable Long id,
                             @Valid @ModelAttribute("usuario") UsuarioDto usuario,
-                            BindingResult result,
-                            Model model) {
+                            BindingResult result) {
 
         if (result.hasErrors()) {
-
-            model.addAttribute("usuario", usuario);
-
             return "cadastro";
         }
 
         service.atualizar(id, usuario);
-
         return "redirect:/usuarios/listar";
     }
 
-    // DELETAR USUÁRIO
+
     @GetMapping("/deletar/{id}")
     public String deletar(@PathVariable Long id) {
-
         service.deletar(id);
-
         return "redirect:/usuarios/listar";
     }
-
 }

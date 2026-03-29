@@ -32,4 +32,12 @@ public class UsuarioDto {
 
     @Past
     private LocalDate dataNascimento;
+
+    public UsuarioDto(String nome, String cpf, String senha, String email, LocalDate dataNascimento) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.senha = senha;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+    }
 }
